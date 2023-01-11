@@ -1,4 +1,6 @@
 from uuid import uuid4
+
+from pydantic import BaseConfig
 from sqlalchemy.orm import relationship
 from sqlalchemy_utils import UUIDType
 from .mixins import TimestampMixin
@@ -7,7 +9,6 @@ from sqlalchemy import Column, String, Integer
 
 
 class Stand(Base, TimestampMixin):
-
     __tablename__ = "stands"
     stand_id = Column(UUIDType(binary=False), primary_key=True, default=uuid4)
     district = Column(String(20), nullable=False)
@@ -19,4 +20,6 @@ class Stand(Base, TimestampMixin):
 
 
     class Config:
-        arbitrary_types_allowed = True
+        BaseConfig.arbitrary_types_allowed = True
+
+

@@ -8,9 +8,12 @@ baseurl = os.path.dirname(os.path.abspath(__file__))
 from fastapi import FastAPI, APIRouter
 from .routers.user import router as user_router
 from .routers.article import router as article_router
+from .routers.stand import router as stand_router
+
 
 router = APIRouter()
 router.include_router(user_router, prefix="/users", tags=["users"])
+router.include_router(stand_router, prefix="/stand", tags=["stands"])
 router.include_router(article_router, prefix="/articles", tags=["articles"])
 
 app = FastAPI()
