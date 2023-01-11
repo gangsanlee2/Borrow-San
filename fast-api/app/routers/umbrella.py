@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 import app.repositories.user as dao
 from app.database import get_db
-from app.models.stand import Stand
+from app.schemas.stand import Stand
 
 router = APIRouter()
 
