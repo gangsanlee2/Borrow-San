@@ -10,18 +10,15 @@ os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
 class Crawling(object):
     def __init__(self):
-        global count, hand_path, hand_words, face_words, hand2_words
+        global count, hand_path, hand_words, face_words, hand2_words, face_path
         count = 10000  # 크롤링할 이미지 개수
         hand_path = r"D:\hand2"
+        face_path = r"D:\face"
 
         hand_words = ["手", "hand", "χέρι", "tangan", "қол", "mà", "ਹੱਥ", "हात", "idejn", "ହାତ",
                         "ಕೈ", "hånd", "mão", "mano", "ręka", "လက်", "qo'l", "руку", "käsi", "kamay",
                         "ձեռքը", "হাত", "kéz", "hönd", "हाथ", "ръка", "əl", "ხელი", "हस्त", "มือ",
                         "dorë"]
-
-        hand2_words = ["hand", "käsi", "kamay",
-                      "ձեռքը", "হাত", "kéz", "hönd", "हाथ", "ръка", "əl", "ხელი", "हस्त", "มือ",
-                      "dorë"]
 
         face_words = ["nägu", "лице", "nkhope", "ýüzi", "tarehy", "waji", "vizaĝo", "tvář", "ચહેરો", "മുഖം", "face",
                          "πρόσωπο", "muka", "gezicht", "अनुहार", "wiċċ", "ansikte", "ମୁହଁ", "ಮುಖ", "ansikt", "нүүр",
@@ -33,9 +30,9 @@ class Crawling(object):
                          "ፊት", "臉", "ముఖం"]
 
     def image_crawling(self):
-        for x,y in enumerate(hand2_words):
+        for x,y in enumerate(face_words):
             search = y
-            save_path = hand_path
+            save_path = face_path
 
             options = webdriver.ChromeOptions()
             options.headless = True
@@ -49,7 +46,7 @@ class Crawling(object):
             elem.send_keys(Keys.RETURN)
 
             # 페이지 끝까지 스크롤 내리기
-            SCROLL_PAUSE_TIME = 1
+            SCROLL_PAUSE_TIME = 5
             # 스크롤 깊이 측정하기
             last_height = driver.execute_script("return document.body.scrollHeight")
 
