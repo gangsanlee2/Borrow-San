@@ -7,8 +7,12 @@ from ..database import Base
 from sqlalchemy import Column, String, Integer
 
 
+<<<<<<< HEAD
+class Stand(Base, TimestampMixin):
+=======
 class Stand(Base):
 
+>>>>>>> f935f1361604c85a08ffba680f348378844a09d9
     __tablename__ = "stands"
     stand_id = Column(UUIDType(binary=False), primary_key=True, default=uuid4)
     district = Column(String(20), nullable=False)
@@ -19,3 +23,8 @@ class Stand(Base):
 
     class Config:
         BaseConfig.arbitrary_types_allowed = True
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> f935f1361604c85a08ffba680f348378844a09d9
