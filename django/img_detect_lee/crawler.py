@@ -10,10 +10,10 @@ os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
 class Crawling(object):
     def __init__(self):
-        global count, hand_path, hand_words, face_words, hand2_words, face_path
+        global count, hand_path, hand_words, face_path, face_words3
         count = 10000  # 크롤링할 이미지 개수
-        hand_path = r"D:\hand2"
-        face_path = r"D:\face"
+        hand_path = r"D:\hand"
+        face_path = r"D:\face3"
 
         hand_words = ["手", "hand", "χέρι", "tangan", "қол", "mà", "ਹੱਥ", "हात", "idejn", "ହାତ",
                         "ಕೈ", "hånd", "mão", "mano", "ręka", "လက်", "qo'l", "руку", "käsi", "kamay",
@@ -28,9 +28,23 @@ class Crawling(object):
                          "andlit", "rupa", "жүзү", "Gesiicht", "顔", "முகம்", "चेहरा", "veidas", "чеҳра", "elongi",
                          "სახე", "йөз", "चेहरा", "gesig", "ubuso", "ใบหน้า", "fytyrë", "脸", "yüz", "चेहरा", "nawong",
                          "ፊት", "臉", "ముఖం"]
+        face_words2 = ["wiċċ", "ansikte", "ମୁହଁ", "ಮುಖ", "ansikt", "нүүр",
+                      "ansigt", "rostro", "faccia", "Twarz", "चेहरा", "မျက်နှာ", "tvár", "yuz", "ubuso", "Visage",
+                      "Gesicht", "hmai", "обличчя", "चेरो", "wyneb", "ໃບຫນ້າ", "මුහුණ", "sejas", "đối mặt", "faciem",
+                      "твар", "դեմքը", "лицо", "মুখ", "viso", "មុខ", "ajanu", "wajah", "mu maso", "față", "चेहरा",
+                      "andlit", "rupa", "жүзү", "Gesiicht", "顔", "முகம்", "चेहरा", "veidas", "чеҳра", "elongi",
+                      "სახე", "йөз", "चेहरा", "gesig", "ubuso", "ใบหน้า", "fytyrë", "脸", "yüz", "चेहरा", "nawong",
+                      "ፊት", "臉", "ముఖం"]
+        face_words3 = ["चेहरा", "မျက်နှာ", "tvár", "yuz", "ubuso", "Visage",
+                       "Gesicht", "hmai", "обличчя", "चेरो", "wyneb", "ໃບຫນ້າ", "මුහුණ", "sejas", "đối mặt", "faciem",
+                       "твар", "դեմքը", "лицо", "মুখ", "viso", "មុខ", "ajanu", "wajah", "mu maso", "față", "चेहरा",
+                       "andlit", "rupa", "жүзү", "Gesiicht", "顔", "முகம்", "चेहरा", "veidas", "чеҳра", "elongi",
+                       "სახე", "йөз", "चेहरा", "gesig", "ubuso", "ใบหน้า", "fytyrë", "脸", "yüz", "चेहरा", "nawong",
+                       "ፊት", "臉", "ముఖం"]
+
 
     def image_crawling(self):
-        for x,y in enumerate(face_words):
+        for x,y in enumerate(face_words3):
             search = y
             save_path = face_path
 

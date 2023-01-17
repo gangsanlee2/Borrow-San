@@ -2,6 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
 <<<<<<< HEAD
+    <list default="true" id="a960b491-a7c3-44a2-be68-9e87b9f7d99b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3bdd6a5e-1956-48ed-b4f4-d5eed44dd0ed.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3bdd6a5e-1956-48ed-b4f4-d5eed44dd0ed/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3bdd6a5e-1956-48ed-b4f4-d5eed44dd0ed/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3bdd6a5e-1956-48ed-b4f4-d5eed44dd0ed/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3bdd6a5e-1956-48ed-b4f4-d5eed44dd0ed/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+<<<<<<< HEAD
     <list default="true" id="4f598a2d-7633-4de8-9526-ffa48bb588d4" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/fast-api.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/models/admin.py" afterDir="false" />
@@ -56,34 +66,20 @@
       <change beforePath="$PROJECT_DIR$/app/routers/article.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/article.py" afterDir="false" />
 >>>>>>> 5c4198715f77f1718819f0c287d2a7e3f8f46f6e
 >>>>>>> d6b36c3fb35a5f5cb3cd0841d7387fd9585ceb11
+>>>>>>> f935f1361604c85a08ffba680f348378844a09d9
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-<<<<<<< HEAD
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
-=======
->>>>>>> 5c4198715f77f1718819f0c287d2a7e3f8f46f6e
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-<<<<<<< HEAD
-  <component name="ProjectId" id="2KAFspTONg6NyhNZDrqDPnx8xdf" />
-=======
-  <component name="ProjectId" id="2KACmwlk5je2Bp1Wmz19b9CfYFR" />
->>>>>>> 5c4198715f77f1718819f0c287d2a7e3f8f46f6e
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2KAlbgsy8YEKlRk1B3RVisG4fm1" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -91,7 +87,10 @@
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> d6b36c3fb35a5f5cb3cd0841d7387fd9585ceb11
+>>>>>>> f935f1361604c85a08ffba680f348378844a09d9
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -102,21 +101,21 @@
     "last_opened_file_path": "C:/Users/AIA/PycharmProjects/Borrow-San/fast-api/app/routers"
 =======
     "WebServerToolWindowFactoryState": "false",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
-  },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
-    ]
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4f598a2d-7633-4de8-9526-ffa48bb588d4" name="Changes" comment="" />
-      <created>1673409689389</created>
+      <changelist id="a960b491-a7c3-44a2-be68-9e87b9f7d99b" name="Changes" comment="" />
+      <created>1673425340369</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
+<<<<<<< HEAD
+      <updated>1673425340369</updated>
+      <workItem from="1673425341598" duration="1121000" />
+=======
       <updated>1673409689389</updated>
       <workItem from="1673409690613" duration="17000" />
       <workItem from="1673413082200" duration="2714000" />
@@ -158,14 +157,13 @@
 =======
 >>>>>>> 5c4198715f77f1718819f0c287d2a7e3f8f46f6e
 >>>>>>> d6b36c3fb35a5f5cb3cd0841d7387fd9585ceb11
+>>>>>>> f935f1361604c85a08ffba680f348378844a09d9
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-<<<<<<< HEAD
-=======
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -177,5 +175,4 @@
       </map>
     </option>
   </component>
->>>>>>> 5c4198715f77f1718819f0c287d2a7e3f8f46f6e
 </project>
