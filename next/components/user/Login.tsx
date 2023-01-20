@@ -1,32 +1,55 @@
-export default function Login(){
-    const validateFormWithJS = () => {
-        //const name = document.querySelector('#name').value
-        //const rollNumber = document.querySelector('#rollNumber').value
-        const name = ""
-        const rollNumber = ""
-        if (!name) {
-          alert('Please enter your name.')
-          return false
-        }
-    
-        if (rollNumber.length < 3) {
-          alert('Roll Number should be at least 3 digits long.')
-          return false
-        }
-      }
-    
-
-    return (<>
-            <h1>로그인</h1>
-            <form action="/send-data-here" method="post" onSubmit={validateFormWithJS}>
-                <label htmlFor="user_email">User Email:</label>
-                <input type="text" id="user_email" name="user_email" />
-
-                <label htmlFor="password">Password:</label>
-                <input type="text" id="password" name="password" />
-
-                <button type="submit">Submit</button>
-            </form>
-        </>
-    )
+import styled from 'styled-components';
+import React, { useRef } from 'react'
+type Props = {
+    onChange : (e : React.FormEvent<HTMLTextAreaElement | HTMLInputElement>) => void
+    onSubmit : (e : React.FormEvent<HTMLFormElement>) => void
 }
+
+export default function Login({onChange, onSubmit}: Props){
+
+    const emailRef = useRef<HTMLInputElement>(null)
+    const passwordRef = useRef<HTMLInputElement>(null)
+    return (
+        <>
+            <form onSubmit={onSubmit}>
+                <Sheet>
+                    <thead>
+                        <Row>
+                            <Cell colSpan={2}><h6>로그인</h6></Cell>
+                        </Row>
+                    </thead>
+                    <tbody>
+                        <Row>
+                            <Cell><label htmlFor="email">이메일(ID)</label></Cell>
+                            <Cell><Input type="text"  id="email" name="email" ref = {emailRef} onChange={onChange}  required minLength= {10} maxLength={20}/></Cell>
+                        </Row>
+                        <Row>
+                            <Cell><label htmlFor="password">비밀번호</label></Cell>
+                            <Cell><Input type="text" id="password" name="password" ref = {passwordRef} onChange={onChange}  required /></Cell>
+                        </Row>
+                        <Row>
+                            <Cell colSpan={2}><button type="submit">전송</button></Cell>
+                        </Row>
+                    </tbody>
+                </Sheet>
+            </form> 
+        </>
+ );
+}
+
+
+const Sheet = styled.table`
+border: 1px solid black
+width: 70%
+`
+const Row = styled.tr`
+border: 1px solid black
+`
+const Cell = styled.td`
+border: 1px solid black,
+
+`
+const Input = styled.input`
+width: 100%
+`
+
