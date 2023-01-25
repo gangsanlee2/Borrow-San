@@ -6,4 +6,4 @@ const MainPage: NextPage = function(){
         </>
     )
 }
-export default Main
+export default MainPage

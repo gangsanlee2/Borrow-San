@@ -5,8 +5,7 @@ export default function ManageNav(){
   return (
     <div className="container-fluid">
       <nav className="nav flex-column">
-          <li><Link href="/">홈</Link></li><span style={{width:10}}/>
-          <li><Link href="/manage/main" >관리자 페이지</Link></li><span style={{width:10}}/>
+          <li><Link href="/manage/main" >관리자 메인</Link></li><span style={{width:10}}/>
           <li><Link href="/manage/list" >회원조회</Link></li><span style={{width:10}}/>
           <li><Link href="/manage/claim" >상담내역</Link></li><span style={{width:10}}/>
           <li><Link href="/manage/notice" >공지사항</Link></li><span style={{width:10}}/>
