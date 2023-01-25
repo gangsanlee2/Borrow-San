@@ -1,6 +1,5 @@
 import type { ReactElement } from 'react'
 import Layout from '@/components/admin/Layout'
-
 import type { NextPageWithLayout } from './_app'
 import Home from '@/components/Home'
 
