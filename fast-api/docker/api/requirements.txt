@@ -1,7 +1,7 @@
-fastapi
-FastAPI-SQLAlchemy==0.2.1
 mysqlclient
-pymysql
 sqlalchemy
-sqlalchemy_utils
 uvicorn
+fastapi
+pymysql
+FastAPI-SQLAlchemy==0.2.1
+SQLAlchemy-Utils==0.39.0

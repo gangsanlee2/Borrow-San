@@ -2,7 +2,6 @@ from uuid import UUID
 
 import pydantic
 
-
 class Umbrella(pydantic.BaseModel):
     umb_id: int
     disrepair_rate: int
