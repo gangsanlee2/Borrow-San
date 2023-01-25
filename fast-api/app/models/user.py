@@ -28,7 +28,7 @@ class User(Base, TimestampMixin):
 
     admin_id = Column(UUIDType(binary=False), ForeignKey("admins.admin_id"), nullable=True)
 
-    admins = relationship('Admin', back_populates='user')
+    admin = relationship('Admin', back_populates='users')
     articles = relationship('Article', back_populates='user')
     rents = relationship('Rent', back_populates='user')
 
