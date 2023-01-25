@@ -12,7 +12,7 @@ class Admin(Base):
 
     __tablename__ = "admins"
 
-    admin_id = Column(UUIDType(binary=False), primary_key=True)
+    admin_id = Column(String(30), primary_key=True)
     name = Column(String(20), unique=True, nullable=False)
 
     stands = relationship('Stand', back_populates='admin')
