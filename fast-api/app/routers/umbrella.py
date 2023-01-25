@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-import app.repositories.umbrella as dao
+import app.cruds.umbrella as dao
 from app.schemas.umbrella import Umbrella
 
 router = APIRouter()

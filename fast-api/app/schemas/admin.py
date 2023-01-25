@@ -7,7 +7,7 @@ from app.schemas.article import Article
 from app.schemas.rent import Rent
 from app.schemas.stand import Stand
 from app.schemas.umbrella import Umbrella
-from app.schemas.user import User
+from app.schemas.user import UserDTO
 
 
 class Admin(BaseModel):
@@ -22,5 +22,5 @@ class AdminDetail(Admin):
     stands: List[Stand] = []
     umbrellas: List[Umbrella] = []
     articles: List[Article] = []
-    users: List[User] = []
+    users: List[UserDTO] = []
     rents: List[Rent] = []

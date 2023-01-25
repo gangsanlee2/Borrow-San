@@ -12,7 +12,7 @@ class User(Base, TimestampMixin):
 
     __tablename__ = "users"
 
-    user_id = Column(UUIDType(binary=False), primary_key=True, default=uuid4)
+    user_id = Column(UUIDType(binary=False), primary_key=True)
     age = Column(Integer)
     address = Column(String(20))
     most_use_loc = Column(String(20))
