@@ -17,6 +17,8 @@ class Umbrella(Base):
     stand_id = Column(UUIDType(binary=False), ForeignKey('stands.stand_id'))
 
     rents = relationship('Rent', back_populates='umbrella')
+    admin = relationship('Admin', back_populates='umbrellas')
+    stand = relationship('Stand', back_populates='umbrellas')
 
     class Config:
         arbitrary_types_allowed = True
