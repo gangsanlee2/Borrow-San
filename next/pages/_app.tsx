@@ -2,7 +2,6 @@ import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import  Footer from '@/components/admin/Footer'
-import  Navbar from '@/components/admin/Navbar'
 import Header from '@/components/admin/Header'
 import { wrapper } from "@/modules/store"
 
@@ -14,27 +13,24 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 function MyApp({ Component, pageProps: {...pageProps} }: AppProps) {
 
   return (<>
- <table style={{ width: "1200px", height: "640px", margin: "0 auto", border: "1px solid black"}}>
-        <thead style={{ height: "20%",  border: "1px solid black"}}>
+    <table style={{ width: "100%", height: "1000px", margin: "0 auto", border: "1px solid black"}}>
+        <thead style={{ height: "10%",  border: "1px solid black"}}>
             <tr>
                 <td style={{ width: "100%", border: "1px solid black"}}>
-                <Navbar/>
+                <Header/>
                 </td>
             </tr>
         </thead>
-        <tbody>
-        <tr style={{ width: "20%",height: "70%",  border: "1px solid black"}}>
-            <td style={{ width: "100%", border: "1px solid black"}}>
-           메인 이미지 및 다운로드 링크
-            <Component {...pageProps}/>
-            </td>
-        </tr>
-        <tr style={{ width: "20%",height: "70%",  border: "1px solid black"}}>
-            <td style={{ width: "100%", border: "1px solid black"}}>
-            <Footer/>
-            </td>
-        </tr>
+        <tbody style={{ paddingTop:"None", height: "90%",  border: "1px solid black"}}>
+            <tr>
+                <td>
+                    <Component {...pageProps}/>
+                </td>
+            </tr>
         </tbody>
+        <tfoot style={{color:"white", backgroundColor:"black"}}>
+        <Footer/>
+        </tfoot>
     </table>
     </>)
           
