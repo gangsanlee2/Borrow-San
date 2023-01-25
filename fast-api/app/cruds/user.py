@@ -21,14 +21,16 @@ class UserCrud(UserBase, ABC):
         self.db: Session = db
 
     def add_user(self, request_user: UserDTO) -> str:
-        user = User(**request_user.dict())
+        print(" ##### cruds 진입 ##### ")
+        user_dict = User(**request_user.dict())
+        print(" ##### model 통과 ##### ")
         user_id = self.find_user_by_email(request_user=request_user)
         if user_id == "":
-            user.user_id = myuuid()
-            user.password = get_hashed_password(user.password)
-            is_success = self.db.add(user)
+            user_dict.user_id = myuuid()
+            user_dict.password = get_hashed_password(user_dict.password)
+            is_success = self.db.add(user_dict)
             self.db.commit()
-            self.db.refresh(user)
+            self.db.refresh(user_dict)
             message = "SUCCESS: 회원가입이 완료되었습니다" if is_success != 0 else "FAILURE: 회원가입이 실패하였습니다"
         else:
             message = "FAILURE: 이메일이 이미 존재합니다"
@@ -42,7 +44,7 @@ class UserCrud(UserBase, ABC):
             verified = verify_password(plain_password=request_user.password,
                                        hashed_password=db_user.password)
             if verified:
-                new_token = generate_token(request_user.user_email)
+                new_token = generate_token(request_user.email)
                 request_user.token = new_token
                 self.update_token(db_user, new_token)
                 return new_token
@@ -106,7 +108,7 @@ class UserCrud(UserBase, ABC):
 
     def find_user_by_email(self, request_user: UserDTO) -> str:
         user = User(**request_user.dict())
-        db_user = self.db.query(User).filter(User.user_email == user.user_email).one_or_none()
+        db_user = self.db.query(User).filter(User.email == user.email).one_or_none()
         if db_user is not None:
             return db_user.user_id
         else:
