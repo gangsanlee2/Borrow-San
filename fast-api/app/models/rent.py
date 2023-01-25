@@ -1,3 +1,4 @@
+from sqlalchemy.orm import relationship
 from sqlalchemy_utils import UUIDType
 from ..database import Base
 from sqlalchemy import Column, Integer, ForeignKey, DATETIME as Datetime
@@ -15,6 +16,10 @@ class Rent(Base):
     admin_id = Column(UUIDType(binary=False), ForeignKey('admins.admin_id'))
     user_id = Column(UUIDType(binary=False), ForeignKey('users.user_id'))
     umb_id = Column(Integer, ForeignKey('umbrellas.umb_id'))
+
+    user = relationship('User', back_populates='rents')
+    admin = relationship('Admin', back_populates='rents')
+    umbrella = relationship('Umbrella', back_populates='rents')
 
     class Config:
         arbitrary_types_allowed = True
