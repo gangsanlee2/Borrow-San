@@ -12,10 +12,10 @@ class Admin(Base):
 
     __tablename__ = "admins"
 
-    admin_id = Column(UUIDType(binary=False), primary_key=True, default=uuid4)
+    admin_id = Column(UUIDType(binary=False), primary_key=True)
     name = Column(String(20), unique=True, nullable=False)
 
-    stands = relationship('Article', back_populates='admin')
+    stands = relationship('Stand', back_populates='admin')
     umbrellas = relationship('Umbrella', back_populates='admin')
     articles = relationship('Article', back_populates='admin')
     users = relationship('User', back_populates='admin')
