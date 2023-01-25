@@ -3,6 +3,8 @@ import sys
 from fastapi_sqlalchemy.middleware import DBSessionMiddleware
 from .database import init_db
 from .env import DB_url
+from .utils.tools import currentTime
+
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 baseurl = os.path.dirname(os.path.abspath(__file__))
 from fastapi import FastAPI, APIRouter
@@ -12,6 +14,8 @@ from .routers.article import router as article_router
 from .routers.umbrella import router as umbrella_router
 from .routers.stand import router as stand_router
 from .routers.rent import router as rent_router
+
+print(f" ################ app.main Started At {currentTime()} ################# ")
 
 router = APIRouter()
 router.include_router(user_router, prefix="/users", tags=["users"])

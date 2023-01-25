@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-import app.repositories.rent as dao
+import app.cruds.rent as dao
 from app.schemas.rent import Rent
 
 
