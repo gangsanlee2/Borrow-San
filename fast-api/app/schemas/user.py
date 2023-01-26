@@ -1,7 +1,7 @@
 
 from typing import List, Optional
 from pydantic import BaseModel
-from app.schemas.article import Article
+from app.schemas.article import ArticleDTO
 from app.schemas.rent import Rent
 
 
@@ -45,7 +45,7 @@ class UserList(UserVO):
 
 
 class UserDetail(UserDTO):
-    articles: List[Article] = []
+    articles: List[ArticleDTO] = []
     rents: List[Rent] = []
 
 

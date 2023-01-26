@@ -1,11 +1,41 @@
 from fastapi import APIRouter, Depends
+from app.cruds.article import ArticleCrud
 from sqlalchemy.orm import Session
-import app.cruds.article as dao
+from app.schemas.article import ArticleDTO
 from app.database import get_db
+from app.schemas.user import UserDTO
 
 router = APIRouter()
 
+@router.post("/register", status_code=201)
+async def register_article(dto: ArticleDTO, db: Session = Depends(get_db)):
+    article_crud = ArticleCrud(db)
+    article_crud.add_article(request_article=dto)
 
-@router.get('/')
-async def get_article(db: Session = Depends(get_db)):
-    return {'data': dao.find_articles(db=db)}
+@router.delete("/remove", status_code=201)
+async def remove_article(dto: ArticleDTO, db: Session = Depends(get_db)):
+    article_crud = ArticleCrud(db)
+    article_crud.delete_article(request_article=dto)
+
+@router.patch("/update", status_code=201)
+async def update_article(dto: ArticleDTO, db: Session = Depends(get_db)):
+    article_crud = ArticleCrud(db)
+    article_crud.update_article(request_article=dto)
+
+@router.get("/page/{page}", status_code=201)
+async def get_all_articles(dto: ArticleDTO, db: Session = Depends(get_db)):
+    article_crud = ArticleCrud(db)
+    article_crud.find_all_articles(request_article=dto)
+
+
+@router.get("/id/{userid}/page/{page}", status_code=201)
+async def get_articles_by_userid(article_id:str, page:int, db: Session = Depends(get_db)):
+    article_crud = ArticleCrud(db)
+    article_crud.find_articles_by_userid(article_id=article_id)
+
+@router.get("/title/{title}/page/{page}", status_code=201)
+async def get_articles_by_title(title:str, page:int, db: Session = Depends(get_db)):
+    article_crud = ArticleCrud(db)
+    article_crud.find_articles_by_title(title=title)
+
+
