@@ -1,5 +1,3 @@
-from uuid import uuid4
-
 from sqlalchemy import Column, String, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy_utils import UUIDType
@@ -26,7 +24,7 @@ class User(Base, TimestampMixin):
     gender = Column(String(20), nullable=True)
     token = Column(String(256))
 
-    admin_id = Column(UUIDType(binary=False), ForeignKey("admins.admin_id"), nullable=True)
+    admin_id = Column(String(30), ForeignKey("admins.admin_id"), nullable=True)
 
     admin = relationship('Admin', back_populates='users')
     articles = relationship('Article', back_populates='user')
