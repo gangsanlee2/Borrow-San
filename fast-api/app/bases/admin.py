@@ -1,9 +1,8 @@
 from abc import abstractmethod, ABCMeta
 from typing import List
-from sqlalchemy.orm import Session
 
 from app.models.admin import Admin
-from app.schemas.admin import AdminDTO, AdminUpdate
+from app.schemas.admin import AdminDTO
 
 
 class AdminBase(metaclass=ABCMeta):
@@ -30,13 +29,10 @@ class AdminBase(metaclass=ABCMeta):
     def find_all_admins_ordered(self) -> List[Admin]: pass
 
     @abstractmethod
-    def find_admin_by_token(self, request_admin: AdminDTO) -> User: pass
+    def find_admin_by_token(self, request_admin: AdminDTO) -> Admin: pass
 
     @abstractmethod
-    def find_admin_by_id(self, request_admin: AdminDTO) -> User: pass
-
-    @abstractmethod
-    def find_admin_by_id_for_update(self, request_admin: AdminUpdate) -> User: pass
+    def find_admin_by_id(self, request_admin: AdminDTO) -> Admin: pass
 
     @abstractmethod
     def find_all_admins(self) -> List[Admin]: pass
@@ -45,6 +41,5 @@ class AdminBase(metaclass=ABCMeta):
     def match_token(self, request_admin: AdminDTO) -> bool: pass
 
     @abstractmethod
-    def count_all_admins(self) -> int: pass
-
+    def find_admin_by_name(self, request_admin: AdminDTO) -> str: pass
 
