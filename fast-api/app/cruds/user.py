@@ -21,9 +21,7 @@ class UserCrud(UserBase, ABC):
         self.db: Session = db
 
     def add_user(self, request_user: UserDTO) -> str:
-        print(" ##### cruds 진입 ##### ")
         user_dict = User(**request_user.dict())
-        print(" ##### model 통과 ##### ")
         user_id = self.find_user_by_email(request_user=request_user)
         if user_id == "":
             user_dict.user_id = myuuid()
@@ -57,7 +55,6 @@ class UserCrud(UserBase, ABC):
         user = self.find_user_by_token(request_user)
         is_success = self.db.query(User).filter(User.user_id == user.user_id).update({User.token: ""})
         self.db.commit()
-        print(f"토큰 삭제되면 1 : {is_success}")
         return "로그아웃 성공입니다." if is_success != 0 else "로그아웃 실패입니다."
 
     def update_user(self, request_user: UserUpdate) -> str:
@@ -79,7 +76,7 @@ class UserCrud(UserBase, ABC):
     def update_password(self, request_user: UserDTO) -> str:
         user = User(**request_user.dict())
         user.password = get_hashed_password(user.password)
-        is_success = self.db.query(User).filter(User.user_id == user.user_id) \
+        is_success = self.db.query(User).filter(User.token == user.token) \
             .update({User.password: user.password}, synchronize_session=False)
         self.db.commit()
         return "success" if is_success != 0 else "failed"
@@ -104,7 +101,7 @@ class UserCrud(UserBase, ABC):
 
     def find_user_by_id_for_update(self, request_user: UserUpdate) -> User:
         user = User(**request_user.dict())
-        return self.db.query(User).filter(User.user_id == user.user_id).one_or_none()
+        return self.db.query(User).filter(User.token == user.token).one_or_none()
 
     def find_user_by_email(self, request_user: UserDTO) -> str:
         user = User(**request_user.dict())

@@ -12,7 +12,8 @@ export default function Login({onChange, onSubmit}: Props){
     return (
         <>
             <form onSubmit={onSubmit}>
-                <Sheet>
+            
+                <Sheet style={{alignItems:"center"}}>
                     <thead>
                         <Row>
                             <Cell colSpan={2}><h6>로그인</h6></Cell>

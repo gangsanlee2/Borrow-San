@@ -1,52 +1,101 @@
 from fastapi import APIRouter, Depends
+from fastapi.encoders import jsonable_encoder
+from fastapi_pagination import paginate, Params
 from sqlalchemy.orm import Session
-import app.cruds.admin as dao
-from app.database import get_db
+from starlette.responses import JSONResponse, RedirectResponse
 
-from app.schemas.admin import Admin
+from app.cruds.admin import AdminCrud
+from app.database import get_db
+from app.schemas.admin import AdminDTO
+from app.utils.tools import paging
 
 router = APIRouter()
 
 
-@router.post('/')
-async def join(item: Admin, db: Session = Depends(get_db)):
-    admin_dict = item.dict()
-    print(f'SignUp Inform : {admin_dict}')
-    dao.join(item, db)
-    return {'data': 'Success'}
+@router.post("/register", status_code=201)
+async def register_admin(dto: AdminDTO, db: Session = Depends(get_db)):
+    return JSONResponse(status_code=200,
+                        content=dict(
+                            msg=AdminCrud(db).add_admin(request_admin=dto)))
 
 
-@router.post('/{id}')
-async def login(id: str, item: Admin, db: Session = Depends(get_db)):
-    dao.login(id, item, db)
-    return {'data': 'Success'}
+@router.post("/login", status_code=200)
+async def login_admin(dto: AdminDTO, db: Session = Depends(get_db)):
+    admin_crud = AdminCrud(db)
+    token_or_fail_message = admin_crud.login(request_admin=dto)
+    return JSONResponse(status_code=200, content=dict(msg=token_or_fail_message))
 
 
-@router.put('/{id}')
-async def update(id: str, item: Admin, db: Session = Depends(get_db)):
-    dao.update(id, item, db)
-    return {'data': 'Success'}
+@router.post("/logout", status_code=200)
+async def logout_admin(dto: AdminDTO, db: Session = Depends(get_db)):
+    admin_crud = AdminCrud(db)
+    token_or_fail_message = admin_crud.logout(request_admin=dto)
+    return JSONResponse(status_code=200, content=dict(msg=token_or_fail_message))
 
 
-@router.delete('/{id}')
-async def delete(id: str, item: Admin, db: Session = Depends(get_db)):
-    dao.delete(id, item, db)
-    return {'data': 'Success'}
+@router.post("/load")
+async def load_admin(dto: AdminDTO, db: Session = Depends(get_db)):
+    if AdminCrud(db).match_token(request_admin=dto):
+        return JSONResponse(status_code=200,
+                            content=jsonable_encoder(
+                                AdminCrud(db).find_admin_by_token(request_admin=dto)))
+    else:
+        RedirectResponse(url='/no-match-token', status_code=302)
+
+@router.put("/new-password")
+async def new_password(dto: AdminDTO, db: Session = Depends(get_db)):
+    if AdminCrud(db).match_token(request_admin=dto):
+        return JSONResponse(status_code=200,
+                            content=dict(
+                                msg=AdminCrud(db).update_password(dto)))
+    else:
+        RedirectResponse(url='/no-match-token', status_code=302)
 
 
-@router.get('/email/{id}')
-async def get_user(id: str, db: Session = Depends(get_db)):
-    dao.find_admin(id, db)
-    return {'data': 'Success'}
+@router.delete("/delete", tags=['age'])
+async def remove_admin(dto: AdminDTO, db: Session = Depends(get_db)):
+    admin_crud = AdminCrud(db)
+    message = admin_crud.delete_admin(dto)
+    return JSONResponse(status_code=400, content=dict(msg=message))
 
 
-@router.get('/{page}')
-async def get_users(page: int, db: Session = Depends(get_db)):
-    dao.find_admins(page, db)
-    return {'data': 'Success'}
+@router.get("/page/{page}")
+async def get_all_admins_per_page(page: int, db: Session = Depends(get_db)):
+    default_size = 5
+    params = Params(page=page, size=default_size)
+    results = AdminCrud(db).find_all_admins_ordered()
+    admin_info = paginate(results, params)
+    count = admin_info.dict()['total']
+    page_info = paging(request_page=page, row_cnt=count)
+    dc = {"page_info": page_info,
+          "user_info": admin_info}
+    return JSONResponse(status_code=200, content=jsonable_encoder(dc))
 
 
-@router.get('/user-name/{name}/{no}')
-async def get_users_by_name(search: str, page: int, db: Session = Depends(get_db)):
-    dao.get_admins_by_name(search, page, db)
-    return {'data': 'Success'}
+@router.get("/page/{page}/size/{size}")
+async def get_all_admins_per_page_with_size(page: int, size: int, db: Session = Depends(get_db)):
+    params = Params(page=page, size=size)
+    results = AdminCrud(db).find_all_admins_ordered()
+    page_result = paginate(results, params)
+    return JSONResponse(status_code=200, content=jsonable_encoder(page_result))
+
+
+@router.get("/list")
+async def get_all_admins(db: Session = Depends(get_db)):
+    admin_crud = AdminCrud(db)
+    ls = admin_crud.find_all_admins()
+    return {"data": ls}
+
+
+@router.get("/id/{id}")
+async def get_admin(dto: AdminDTO, db: Session = Depends(get_db)):
+    admin_crud = AdminCrud(db)
+    result = admin_crud.find_admin_by_id(dto)
+    return result
+
+
+@router.get("/name/{name}/page/{page}")
+async def get_admin_id_by_name(dto: AdminDTO, db: Session = Depends(get_db)):
+    admin_crud = AdminCrud(db)
+    admin_crud.find_admin_by_name(dto)
+    return {"data": "success"}
