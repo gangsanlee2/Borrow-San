@@ -12,10 +12,10 @@ class Article(Base, TimestampMixin):
     title = Column(String(20), nullable=False)
     type = Column(String(20), nullable=False)
     text = Column(String(20), nullable=False)
-    reference_id = Column(String(20), nullable=False)
+    reference_id = Column(String(20), nullable=True)
 
-    admin_id = Column(UUIDType(binary=False), ForeignKey("admins.admin_id"), nullable=True)
-    user_id = Column(UUIDType(binary=False), ForeignKey('users.user_id'))
+    admin_id = Column(String(30), ForeignKey("admins.admin_id"), nullable=True)
+    user_id = Column(String(30), ForeignKey('users.user_id'))
 
     user = relationship('User', back_populates='articles')
     admin = relationship('Admin', back_populates='articles')

@@ -3,7 +3,7 @@ from uuid import UUID
 
 from pydantic import BaseModel
 
-from app.schemas.article import Article
+from app.schemas.article import ArticleDTO
 from app.schemas.rent import Rent
 from app.schemas.stand import Stand
 from app.schemas.umbrella import Umbrella
@@ -21,6 +21,6 @@ class Admin(BaseModel):
 class AdminDetail(Admin):
     stands: List[Stand] = []
     umbrellas: List[Umbrella] = []
-    articles: List[Article] = []
+    articles: List[ArticleDTO] = []
     users: List[UserDTO] = []
     rents: List[Rent] = []
