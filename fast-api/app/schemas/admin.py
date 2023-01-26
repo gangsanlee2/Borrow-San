@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from app.schemas.article import Article
 from app.schemas.rent import Rent
 from app.schemas.stand import Stand
-from app.schemas.umbrella import Umbrella
+from app.schemas.umbrella import UmbrellaDTO
 from app.schemas.user import UserDTO
 from typing import List, Optional
 
@@ -25,7 +25,7 @@ class AdminDTO(BaseModel):
 
 class AdminDetail(AdminDTO):
     stands: List[Stand] = []
-    umbrellas: List[Umbrella] = []
+    umbrellas: List[UmbrellaDTO] = []
     articles: List[Article] = []
     users: List[UserDTO] = []
     rents: List[Rent] = []
