@@ -21,14 +21,14 @@ class UserCrud(UserBase, ABC):
         self.db: Session = db
 
     def add_user(self, request_user: UserDTO) -> str:
-        user = User(**request_user.dict())
+        user_dict = User(**request_user.dict())
         user_id = self.find_user_by_email(request_user=request_user)
         if user_id == "":
-            user.user_id = myuuid()
-            user.password = get_hashed_password(user.password)
-            is_success = self.db.add(user)
+            user_dict.user_id = myuuid()
+            user_dict.password = get_hashed_password(user_dict.password)
+            is_success = self.db.add(user_dict)
             self.db.commit()
-            self.db.refresh(user)
+            self.db.refresh(user_dict)
             message = "SUCCESS: 회원가입이 완료되었습니다" if is_success != 0 else "FAILURE: 회원가입이 실패하였습니다"
         else:
             message = "FAILURE: 이메일이 이미 존재합니다"
@@ -42,7 +42,7 @@ class UserCrud(UserBase, ABC):
             verified = verify_password(plain_password=request_user.password,
                                        hashed_password=db_user.password)
             if verified:
-                new_token = generate_token(request_user.user_email)
+                new_token = generate_token(request_user.email)
                 request_user.token = new_token
                 self.update_token(db_user, new_token)
                 return new_token
@@ -55,7 +55,6 @@ class UserCrud(UserBase, ABC):
         user = self.find_user_by_token(request_user)
         is_success = self.db.query(User).filter(User.user_id == user.user_id).update({User.token: ""})
         self.db.commit()
-        print(f"토큰 삭제되면 1 : {is_success}")
         return "로그아웃 성공입니다." if is_success != 0 else "로그아웃 실패입니다."
 
     def update_user(self, request_user: UserUpdate) -> str:
@@ -77,7 +76,7 @@ class UserCrud(UserBase, ABC):
     def update_password(self, request_user: UserDTO) -> str:
         user = User(**request_user.dict())
         user.password = get_hashed_password(user.password)
-        is_success = self.db.query(User).filter(User.user_id == user.user_id) \
+        is_success = self.db.query(User).filter(User.token == user.token) \
             .update({User.password: user.password}, synchronize_session=False)
         self.db.commit()
         return "success" if is_success != 0 else "failed"
@@ -102,11 +101,11 @@ class UserCrud(UserBase, ABC):
 
     def find_user_by_id_for_update(self, request_user: UserUpdate) -> User:
         user = User(**request_user.dict())
-        return self.db.query(User).filter(User.user_id == user.user_id).one_or_none()
+        return self.db.query(User).filter(User.token == user.token).one_or_none()
 
     def find_user_by_email(self, request_user: UserDTO) -> str:
         user = User(**request_user.dict())
-        db_user = self.db.query(User).filter(User.user_email == user.user_email).one_or_none()
+        db_user = self.db.query(User).filter(User.email == user.email).one_or_none()
         if db_user is not None:
             return db_user.user_id
         else:

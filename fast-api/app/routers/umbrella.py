@@ -15,7 +15,7 @@ router = APIRouter()
 async def register_user(dto: UmbrellaDTO, db: Session = Depends(get_db)):
     return JSONResponse(status_code=200,
                         content=dict(
-                            msg=UmbrellaCrud(db).add_umbrella(request_user=dto)))
+                            msg=UmbrellaCrud(db).add_umbrella(request_umbrella=dto)))
 
 
 @router.put("/modify")

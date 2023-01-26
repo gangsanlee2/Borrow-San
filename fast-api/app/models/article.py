@@ -14,9 +14,11 @@ class Article(Base, TimestampMixin):
     text = Column(String(20), nullable=False)
     reference_id = Column(String(20), nullable=False)
 
+    admin_id = Column(UUIDType(binary=False), ForeignKey("admins.admin_id"), nullable=True)
     user_id = Column(UUIDType(binary=False), ForeignKey('users.user_id'))
 
-    users = relationship('User', back_populates='article')
+    user = relationship('User', back_populates='articles')
+    admin = relationship('Admin', back_populates='articles')
 
     class Config:
         arbitrary_types_allowed = True

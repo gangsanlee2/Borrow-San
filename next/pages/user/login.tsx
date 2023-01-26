@@ -1,14 +1,11 @@
+import Login from "@/components/user/Login"
 import { NextPage } from "next"
-import Login from "@/components/user/Login";
 
 const LoginPage: NextPage = function(){
-
     return (
         <>
-           <Login/>
+            <Login/>
         </>
-            
-        
- );
+    )
 }
 export default LoginPage

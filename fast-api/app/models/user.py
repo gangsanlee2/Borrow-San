@@ -12,7 +12,7 @@ class User(Base, TimestampMixin):
 
     __tablename__ = "users"
 
-    user_id = Column(UUIDType(binary=False), primary_key=True)
+    user_id = Column(String(30), primary_key=True)
     age = Column(Integer)
     address = Column(String(20))
     most_use_loc = Column(String(20))
@@ -21,14 +21,14 @@ class User(Base, TimestampMixin):
     birth = Column(String(20))
     grade = Column(String(20))
     pay_info = Column(String(20))
-    password = Column(String(20), nullable=False)
+    password = Column(String(100), nullable=False)
     email = Column(String(20), unique=True, nullable=False)
     gender = Column(String(20), nullable=True)
-    token = Column(String(20))
+    token = Column(String(256))
 
     admin_id = Column(UUIDType(binary=False), ForeignKey("admins.admin_id"), nullable=True)
 
-    admins = relationship('Admin', back_populates='user')
+    admin = relationship('Admin', back_populates='users')
     articles = relationship('Article', back_populates='user')
     rents = relationship('Rent', back_populates='user')
 

@@ -14,7 +14,6 @@ router = APIRouter()
 
 @router.post("/register", status_code=201)
 async def register_user(dto: UserDTO, db: Session = Depends(get_db)):
-    print("##### routers 진입 #####")
     return JSONResponse(status_code=200,
                         content=dict(
                             msg=UserCrud(db).add_user(request_user=dto)))
@@ -37,6 +36,7 @@ async def logout_user(dto: UserDTO, db: Session = Depends(get_db)):
 @router.post("/load")
 async def load_user(dto: UserDTO, db: Session = Depends(get_db)):
     if UserCrud(db).match_token(request_user=dto):
+
         return JSONResponse(status_code=200,
                             content=jsonable_encoder(
                                 UserCrud(db).find_user_by_token(request_user=dto)))

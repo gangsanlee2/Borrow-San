@@ -16,7 +16,15 @@ class UmbrellaCrud(UmbrellaBase, ABC):
         self.db: Session = db
 
     def add_umbrella(self, request_umbrella: UmbrellaDTO) -> str:
-        pass
+        umbrella = Umbrella(**request_umbrella.dict())
+        if umbrella.image_url is not None:
+            is_success = self.db.add(umbrella)
+            self.db.commit()
+            message = "SUCCESS: 우산 등록 완료"\
+                if is_success != 0 else "FAILURE: 우산 등록 실패 / 알 수 없는 오류"
+        else:
+            message = "FAILURE: 우산 등록 실패"
+        return message
 
     def update_umbrella(self, request_umbrella: UmbrellaDTO) -> str:
         pass
