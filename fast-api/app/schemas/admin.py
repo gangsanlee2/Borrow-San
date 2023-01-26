@@ -25,12 +25,11 @@ class AdminDTO(BaseModel):
 
 class AdminDetail(AdminDTO):
     stands: List[Stand] = []
-<<<<<<< HEAD
-    umbrellas: List[Umbrella] = []
+
     articles: List[ArticleDTO] = []
-=======
+
     umbrellas: List[UmbrellaDTO] = []
-    articles: List[Article] = []
->>>>>>> 12a1745dc58e386569b068a97b00852be38f6028
+    articles: List[ArticleDTO] = []
+
     users: List[UserDTO] = []
     rents: List[Rent] = []
