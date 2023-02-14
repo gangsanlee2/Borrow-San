@@ -16,12 +16,3 @@ export default function Header(){
       </>
     )
   }
-const Span = styled.span`
-    color: red;
-    float: right;
-    padding-right: 100px
-`
-const HR = styled.hr`
-  border: 1px solid black;
-  text-align: center;
-`
